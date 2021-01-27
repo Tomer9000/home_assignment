@@ -87,7 +87,6 @@ def main_func(direcory):
     '''
     if dir_exist(direcory):
         fs_block_size = (os.statvfs(direcory).f_bsize)
-        create_csv()
         for root, _, files in os.walk(direcory):
             for file_name in files:
                 dict_files[os.path.join(root, file_name)] = None
