@@ -89,7 +89,9 @@ def main_func(direcory):
         fs_block_size = (os.statvfs(direcory).f_bsize)
         for root, _, files in os.walk(direcory):
             for file_name in files:
-                dict_files[os.path.join(root, file_name)] = None
+                fname = os.path.join(root, file_name)
+                if os.path.isfile(fname):
+                    dict_files[fname] = None
         # This is used in order to multi task md5 calculation.
         p = multiprocessing.Pool(CPU_COUNT)
         p.map(calc_md5, dict_files.keys())
